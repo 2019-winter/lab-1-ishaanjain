@@ -14,7 +14,7 @@ jupyter:
 ---
 
 # Name(s)
-**PUT YOUR FULL NAME(S) HERE**
+Ishaan Jain
 
 
 **Instructions:** This is an individual assignment, but you may discuss your code with your neighbors.
@@ -36,7 +36,7 @@ Please read and reference the following as your progress through this course.
 **In the space provided below, what are three things that still remain unclear or need further explanation?**
 
 
-**YOUR ANSWER HERE**
+Is Jupyter's kernel related to a kernel in the context of operating systems?
 
 
 ## Exercises 1-7
@@ -47,45 +47,78 @@ For the following exercises please read the Python appendix in the Marsland text
 
 ```python
 # YOUR SOLUTION HERE
-#a=1000
-print('this is my answer',a+1) 
+import numpy as np
+a = np.full((6, 4), 2, int)
+print(a)
 ```
 
 ## Exercise 2
 
 ```python
 # YOUR SOLUTION HERE
-a=2000
+b = np.full((6,4), 1, int)
+np.fill_diagonal(b, 3)
+print(b)
 ```
 
 ## Exercise 3
 
 ```python
 # YOUR SOLUTION HERE
+print(a*b)
+# print(np.dot(a,b))
+# a*b works because element-wise multiplication requires the two matrices to have the same dimensions.
+# np.dot(a,b) does not work because it requires the number of columns of the first matrix to equal the number of rows of the second matrix.
 ```
 
 ## Exercise 4
 
 ```python
 # YOUR SOLUTION HERE
+print(np.dot(a.transpose(),b))
+print(np.dot(a,b.transpose()))
+# The results are different shapes because the shape of the output matrix depends on the number of rows of the first matrix and number
+# of columns of the second matrix.
 ```
 
 ## Exercise 5
 
 ```python
 # YOUR SOLUTION HERE
+def give_greeting():
+    print('hi')
+give_greeting()
 ```
 
 ## Exercise 6
 
 ```python
 # YOUR SOLUTION HERE
+def random_arrays():
+    for i in range(0,3):
+        a = np.random.randint(11,size=(5,5))
+        print(a)
+        print('sum:', np.sum(a))
+        print('mean:', np.mean(a))
+random_arrays()
 ```
 
 ## Exercise 7
 
 ```python
 # YOUR SOLUTION HERE
+def count_ones_v1(m):
+    num_ones = 0
+    for elem in np.ndarray.flatten(m):
+        if elem == 1:
+            num_ones += 1
+    print(num_ones)
+def count_ones_v2(m):
+    num_ones = len(np.where(m==1)[0])
+    print(num_ones)
+rand_matrix = np.random.randint(11,size=(3,3))
+count_ones_v1(rand_matrix)
+count_ones_v2(rand_matrix)
 ```
 
 ## Excercises 8-???
