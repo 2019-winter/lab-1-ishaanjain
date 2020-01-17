@@ -112,13 +112,13 @@ def count_ones_v1(m):
     for elem in np.ndarray.flatten(m):
         if elem == 1:
             num_ones += 1
-    print(num_ones)
+    return num_ones
 def count_ones_v2(m):
     num_ones = len(np.where(m==1)[0])
-    print(num_ones)
+    return num_ones
 rand_matrix = np.random.randint(11,size=(3,3))
-count_ones_v1(rand_matrix)
-count_ones_v2(rand_matrix)
+print(count_ones_v1(rand_matrix))
+print(count_ones_v2(rand_matrix))
 ```
 
 ## Excercises 8-???
@@ -130,6 +130,10 @@ Repeat exercise A.1 from Marsland, but create a Pandas DataFrame instead of a Nu
 
 ```python
 # YOUR SOLUTION HERE
+import pandas as pd
+a_8 = np.full((6, 4), 2, int)
+a_8 = pd.DataFrame(a_8)
+a_8
 ```
 
 ## Exercise 9
@@ -137,6 +141,10 @@ Repeat exercise A.2 using a DataFrame instead.
 
 ```python
 # YOUR SOLUTION HERE
+a_9 = np.full((6,4), 1, int)
+np.fill_diagonal(a_9, 3)
+a_9 = pd.DataFrame(a_9)
+a_9
 ```
 
 ## Exercise 10
@@ -144,6 +152,10 @@ Repeat exercise A.3 using DataFrames instead.
 
 ```python
 # YOUR SOLUTION HERE
+display(a_8*a_9)
+# display(a_8.dot(a_9))
+# a_8*a_9 works because element-wise multiplication requires the two matrices to have the same dimensions.
+# a_8.dot(a_9) does not work because it requires the number of columns of the first matrix to equal the number of rows of the second matrix.
 ```
 
 ## Exercise 11
@@ -151,6 +163,18 @@ Repeat exercise A.7 using a dataframe.
 
 ```python
 # YOUR SOLUTION HERE
+def count_ones_v3(df):
+    num_ones = 0
+    for elem in df.values.flatten():
+        if elem == 1:
+            num_ones += 1
+    return num_ones
+def count_ones_v4(df):
+    num_ones = df.where(df == 1).count().sum()
+    return num_ones
+rand_df = pd.DataFrame(np.random.randint(11,size=(3,3)))
+print(count_ones_v3(rand_df))
+print(count_ones_v4(rand_df))
 ```
 
 ## Exercises 12-14
@@ -171,6 +195,7 @@ How do you select the ``name`` column without using .iloc?
 
 ```python
 ## YOUR SOLUTION HERE
+display(titanic_df.loc[:, 'name'])
 ```
 
 ## Exercise 13
@@ -179,6 +204,9 @@ After setting the index to ``sex``, how do you select all passengers that are ``
 ```python
 ## YOUR SOLUTION HERE
 titanic_df.set_index('sex',inplace=True)
+female_only = titanic_df.loc['female']
+display(female_only)
+display(len(female_only))
 ```
 
 ## Exercise 14
@@ -186,6 +214,8 @@ How do you reset the index?
 
 ```python
 ## YOUR SOLUTION HERE
+titanic_df = titanic_df.reset_index()
+titanic_df
 ```
 
 ```python
